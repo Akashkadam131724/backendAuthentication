@@ -1,0 +1,14 @@
+
+mongoose
+  .connect("mongodb://127.0.0.1:27017", {
+    dbName: "backend",
+  })
+  .then(() => console.log("data base connected"))
+  .catch((err) => console.log(err));
+
+const messageSchema = new mongoose.Schema({
+  name: String,
+  email: String,
+});
+
+const Message = mongoose.model("Message", messageSchema);

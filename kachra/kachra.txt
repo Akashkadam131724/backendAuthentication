@@ -1,0 +1,21 @@
+import http from "http";
+import Generate from "./features.js";
+import fs from "fs";
+
+const server = http.createServer((req, res) => {
+  if (req.url === "/") {
+    fs.readFile("./index.html", (err, data) => {
+      res.end(data);
+    });
+  } else if (req.url === "/love") {
+    res.end(`Love percentage is ${Generate()}`);
+  } else {
+    fs.readFile("./error.html", (err, data) => {
+      res.end(data);
+    });
+  }
+});
+
+server.listen(5001, "127.0.0.1", () => {
+  console.log("My server is running successfully");
+});
